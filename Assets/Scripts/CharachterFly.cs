@@ -3,30 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CharachterFly : MonoBehaviour {
+    public Transform enemy;
+    //public Transform target;
+    //var rotationSpeed:int=2;
+    //int rotationSpeed=2;
 
+    public GameObject player;
+    public float distance;
+    public bool layer = false;
+    //public Animator animator;
+    protected Animator animator;
     // Use this for initialization
     void Start()
     {
-        //Debug.Log("Fly script added to: " + gameObject.name);
+        player = GameObject.Find("FPSController");
+        //animator=GetComponent(Animator);
+        animator = GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position += transform.forward * Time.deltaTime * 10.0f;
-        if (Input.GetButton("Fire1"))
-            transform.position += transform.forward * Time.deltaTime * 40.0f;
-
-        transform.Rotate(Input.GetAxis("Vertical"), 0.0f, -Input.GetAxis("Horizontal"));
-
-        float terrainHeightWhereWeAre = Terrain.activeTerrain.SampleHeight(transform.position);
-
-        if (terrainHeightWhereWeAre > transform.position.y)
+        if (layer == true)
         {
-            transform.position = new Vector3(transform.position.x,
-            terrainHeightWhereWeAre,
-            transform.position.z);
+            transform.LookAt(player.transform);
+            animator.SetBool("Run", layer);
+        }
+        distance = Vector3.Distance(player.transform.position, enemy.position);
+        //Debug.Log("distance is " + distance);
+        if (distance < 10)
+        {
+            layer = true;
+            //transform.LookAt(player.transform);
+            //animator.SetBool("Run", layer);
         }
     }
-
 }
