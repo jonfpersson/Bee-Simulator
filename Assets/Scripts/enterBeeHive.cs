@@ -15,8 +15,6 @@ public class enterBeeHive : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //Vector3.Distance(followPointCoordinate, transform.position)
-
         if(Vector3.Distance(hive.transform.position, transform.position) < 5)
         {
             enterHiveMsg.SetActive(true);
@@ -29,9 +27,6 @@ public class enterBeeHive : MonoBehaviour {
 
         } else
             enterHiveMsg.SetActive(false);
-
-        //Debug.Log("HIVE: " + hive.transform.position);
-        //Debug.Log("player: " + transform.position);
 
     }
 
