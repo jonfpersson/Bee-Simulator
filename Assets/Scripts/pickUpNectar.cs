@@ -17,7 +17,7 @@ public class pickUpNectar : MonoBehaviour {
 
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, maxDistance) 
-            && hit.collider.name=="nectar")        {
+            && hit.collider.name== "bigNectar")        {
             if (Input.GetMouseButton(0))
                 Destroy(hit.transform.gameObject);
         }

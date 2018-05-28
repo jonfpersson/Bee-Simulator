@@ -7,7 +7,10 @@ using UnityEngine.SceneManagement;
 public class enterBeeHive : MonoBehaviour {
 
     public GameObject hive;
-    public GameObject enterHiveMsg;
+    public Text enterHiveMsg;
+    public AudioClip audioPlayer;
+
+
 	// Use this for initialization
 	void Start () {
 		
@@ -15,18 +18,23 @@ public class enterBeeHive : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(Vector3.Distance(hive.transform.position, transform.position) < 5)
+        if(hive != null || enterHiveMsg != null)
         {
-            enterHiveMsg.SetActive(true);
-            if (Input.GetKey(KeyCode.E))
+            if (Vector3.Distance(hive.transform.position, transform.position) < 5)
             {
-                StartCoroutine(enterHive());
-                enterHiveMsg.SetActive(false);
+                //Debug.Log("isClose");
+                enterHiveMsg.text = "Press E to enter bee hive";
+                if (Input.GetKey(KeyCode.E))
+                {
+                    StartCoroutine(enterHive());
+                    enterHiveMsg.text = "";
+                }
 
             }
+            else
+                enterHiveMsg.text = "";
 
-        } else
-            enterHiveMsg.SetActive(false);
+        }
 
     }
 
