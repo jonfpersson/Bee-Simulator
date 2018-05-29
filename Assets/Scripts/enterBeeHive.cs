@@ -8,17 +8,17 @@ public class enterBeeHive : MonoBehaviour {
 
     public GameObject hive;
     public Text enterHiveMsg;
-    public AudioClip audioPlayer;
+    public AudioSource audioPlayer;
 
 
 	// Use this for initialization
 	void Start () {
-		
+        audioPlayer = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if(hive != null || enterHiveMsg != null)
+        if (hive != null || enterHiveMsg != null)
         {
             if (Vector3.Distance(hive.transform.position, transform.position) < 5)
             {
@@ -26,6 +26,7 @@ public class enterBeeHive : MonoBehaviour {
                 enterHiveMsg.text = "Press E to enter bee hive";
                 if (Input.GetKey(KeyCode.E))
                 {
+
                     StartCoroutine(enterHive());
                     enterHiveMsg.text = "";
                 }
@@ -34,9 +35,11 @@ public class enterBeeHive : MonoBehaviour {
             else
                 enterHiveMsg.text = "";
 
-        }
+        } else
+            audioPlayer.Stop();
 
     }
+
 
     IEnumerator enterHive()
     {

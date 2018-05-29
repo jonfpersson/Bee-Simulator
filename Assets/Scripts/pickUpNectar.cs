@@ -1,30 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class pickUpNectar : MonoBehaviour {
 
     float maxDistance = 5;
-
+    public Text nectarCounter;
+    int nectars;
+    string informationText = "Nectars: ";
     // Use this for initialization
     void Start () {
-		
-	}
+        nectars = 0;
+        nectarCounter.text = informationText + nectars.ToString() + "/20";
+    }
 
     // Update is called once per frame
     void Update()
     {
 
-        RaycastHit hit;
+        RaycastHit hit; 
         if (Physics.Raycast(transform.position, transform.forward, out hit, maxDistance) 
             && hit.collider.name== "bigNectar")        {
             if (Input.GetMouseButton(0))
+            {
                 Destroy(hit.transform.gameObject);
+                nectars++;
+                nectarCounter.text = informationText + nectars.ToString() + "/20";
+
+            }
+
         }
-
-        //Debug.Log(hit.collider.name);
-
-
 
     }
 

@@ -615,6 +615,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hive: {fileID: 0}
   enterHiveMsg: {fileID: 0}
+  audioPlayer: {fileID: 0}
 --- !u!114 &114225304715665254
 MonoBehaviour:
   m_ObjectHideFlags: 1
