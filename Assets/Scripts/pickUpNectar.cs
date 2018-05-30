@@ -12,7 +12,9 @@ public class pickUpNectar : MonoBehaviour {
     // Use this for initialization
     void Start () {
         nectars = 0;
-        nectarCounter.text = informationText + nectars.ToString() + "/20";
+        if(nectarCounter != null)
+            nectarCounter.text = informationText + nectars.ToString() + "/20";
+
     }
 
     // Update is called once per frame
@@ -26,7 +28,8 @@ public class pickUpNectar : MonoBehaviour {
             {
                 Destroy(hit.transform.gameObject);
                 nectars++;
-                nectarCounter.text = informationText + nectars.ToString() + "/20";
+                if (nectarCounter != null)
+                    nectarCounter.text = informationText + nectars.ToString() + "/20";
 
             }
 

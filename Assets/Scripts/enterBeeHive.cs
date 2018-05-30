@@ -21,20 +21,18 @@ public class enterBeeHive : MonoBehaviour {
         if (hive != null || enterHiveMsg != null)
         {
             if (Vector3.Distance(hive.transform.position, transform.position) < 5)
-            {
-                //Debug.Log("isClose");
-                enterHiveMsg.text = "Press E to enter bee hive";
-                if (Input.GetKey(KeyCode.E))
                 {
+                    //Debug.Log("isClose");
+                    enterHiveMsg.text = "Press E to enter bee hive";
+                    if (Input.GetKey(KeyCode.E))
+                    {
+                        StartCoroutine(enterHive());
+                        enterHiveMsg.text = "";
+                    }
 
-                    StartCoroutine(enterHive());
-                    enterHiveMsg.text = "";
                 }
-
-            }
-            else
-                enterHiveMsg.text = "";
-
+                else
+                    enterHiveMsg.text = "";
         } else
             audioPlayer.Stop();
 
