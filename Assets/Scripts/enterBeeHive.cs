@@ -29,15 +29,12 @@ public class enterBeeHive : MonoBehaviour {
                         StartCoroutine(enterHive());
                         enterHiveMsg.text = "";
                     }
-
                 }
                 else
                     enterHiveMsg.text = "";
         } else
             audioPlayer.Stop();
-
     }
-
 
     IEnumerator enterHive()
     {
