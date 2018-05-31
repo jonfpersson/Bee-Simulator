@@ -7,12 +7,13 @@ public class pickUpNectar : MonoBehaviour {
 
     float maxDistance = 5;
     public Text nectarCounter;
-    int nectars;
+    public static int nectars = 0;
     string informationText = "Nectars: ";
     // Use this for initialization
     void Start () {
-        nectars = 0;
-        if(nectarCounter != null)
+        nectars = PlayerPrefs.GetInt("nectars");
+
+        if (nectarCounter != null)
             nectarCounter.text = informationText + nectars.ToString() + "/20";
 
     }

@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 82266603410148918}
   - component: {fileID: 114343753729885344}
   - component: {fileID: 114186513898218038}
+  - component: {fileID: 114180175807906312}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -602,6 +603,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114180175807906312
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1164630092271032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af0169304d124204ca9eb850cca01fec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  staminaBar: {fileID: 0}
+  HealthBar: {fileID: 0}
 --- !u!114 &114186513898218038
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -615,7 +629,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hive: {fileID: 0}
   enterHiveMsg: {fileID: 0}
-  audioPlayer: {fileID: 0}
+  audioPlayer: {fileID: 82266603410148918}
 --- !u!114 &114225304715665254
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -631,7 +645,6 @@ MonoBehaviour:
   climbSpeed: 4
   normalMoveSpeed: 10
   slowMoveFactor: 0.25
-  fastMoveFactor: 3
 --- !u!114 &114281348019311986
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -647,7 +660,6 @@ MonoBehaviour:
   climbSpeed: 4
   normalMoveSpeed: 10
   slowMoveFactor: 0.25
-  fastMoveFactor: 3
 --- !u!114 &114343753729885344
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -659,6 +671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f94de7ecdee01c45b477b7fa8d6d4c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nectarCounter: {fileID: 0}
 --- !u!114 &114559237857139502
 MonoBehaviour:
   m_ObjectHideFlags: 1

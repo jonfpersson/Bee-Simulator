@@ -26,6 +26,7 @@ public class enterBeeHive : MonoBehaviour {
                     enterHiveMsg.text = "Press E to enter bee hive";
                     if (Input.GetKey(KeyCode.E))
                     {
+                        PlayerPrefs.SetInt("nectars", pickUpNectar.nectars);
                         StartCoroutine(enterHive());
                         enterHiveMsg.text = "";
                     }

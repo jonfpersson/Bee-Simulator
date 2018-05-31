@@ -4,48 +4,65 @@ using UnityEngine;
 
 public class controlVitals : MonoBehaviour {
 
-    public SimpleHealthBar healthBar;
+    public SimpleHealthBar staminaBar;
+    public SimpleHealthBar HealthBar;
 
-    float life, max;
+    float stamina, max, life;
     
     // Use this for initialization
     void Start () {
 		max = 100;
-		life = 100;
+		stamina = 100;
+        life = 100;
     }
 
     // Update is called once per frame
     void Update () {
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            InvokeRepeating("controlPlayerStamina", 0, .05f);
-            Debug.Log("in0");
-
+            controlPlayerVitals();
         }
-
-       
-        //InvokeRepeating("setPlayerStamina", 0, .05f);
+        else
+            regeneratePlayerVitals();
     }
 
-    public void controlPlayerStamina()
+    public void controlPlayerVitals()
     {
         //Decrease stamina when running
-        if (life == 0)
-        {
-            beeFly.fastMoveFactor = 1;
-        } else
+        if (stamina > 0)
         {
             beeFly.fastMoveFactor = 3;
-            life--;
-            healthBar.UpdateBar(life, 100);
+            stamina -= Time.deltaTime * 24;
+            staminaBar.UpdateBar(stamina, 100);
 
         }
+        else
+        {
+            beeFly.fastMoveFactor = 1;
+            life -= Time.deltaTime * 10;
+            HealthBar.UpdateBar(life, 100);
+
+
+        }
+
     }
 
-    public void regeneratePlayerStamina()
+    public void regeneratePlayerVitals()
     {
+        if (stamina <= 100 && stamina >= -10)
+        {
+            stamina += Time.deltaTime * 24;
+            staminaBar.UpdateBar(stamina, 100);
 
-        Debug.Log("in");
-        
+
+        }
+
+        if (life <= 100 && life >= -10)
+        {
+            life += Time.deltaTime * 4;
+            HealthBar.UpdateBar(life, 100);
+
+        }
+
     }
 }
