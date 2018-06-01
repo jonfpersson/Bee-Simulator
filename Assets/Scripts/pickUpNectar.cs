@@ -24,10 +24,11 @@ public class pickUpNectar : MonoBehaviour {
 
         RaycastHit hit; 
         if (Physics.Raycast(transform.position, transform.forward, out hit, maxDistance) 
-            && hit.collider.name== "bigNectar")        {
+            && hit.collider.name== "bigNectar")  {
             if (Input.GetMouseButton(0))
             {
                 Destroy(hit.transform.gameObject);
+                if(nectars != 20)
                 nectars++;
                 if (nectarCounter != null)
                     nectarCounter.text = informationText + nectars.ToString() + "/20";
