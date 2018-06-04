@@ -23,7 +23,7 @@ public class enterBeeHive : MonoBehaviour {
             if (Vector3.Distance(hive.transform.position, transform.position) < 5)
                 {
                     //Debug.Log("isClose");
-                    enterHiveMsg.text = "Press E to enter beehive";
+                    enterHiveMsg.text = "Press E to enter bee*hive";
                     if (Input.GetKey(KeyCode.E))
                     {
                         PlayerPrefs.SetInt("nectars", pickUpNectar.nectars);
