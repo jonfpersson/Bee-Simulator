@@ -6,12 +6,15 @@ public class rotateIcons : MonoBehaviour {
 
     public GameObject[] pictures;
 
+    public GameObject[] levels;
+
     Vector3 picPos0;
     Vector3 picPos1;
     Vector3 picPos2;
 
     public void start()
     {
+    
     }
 
     public void rotatePictures(string direction)
@@ -41,6 +44,40 @@ public class rotateIcons : MonoBehaviour {
 
 
         }
+
+
+        if (pictures[0].transform.localPosition == new Vector3(-120, 52, 0))
+        {
+            Debug.Log("test");
+            levels[2].SetActive(true);
+
+            levels[0].SetActive(false);
+            levels[1].SetActive(false);
+            levels[3].SetActive(false);
+
+
+        }
+        else if (pictures[1].transform.localPosition == new Vector3(-120, 52, 0))
+        {
+
+            levels[3].SetActive(true);
+
+            levels[0].SetActive(false);
+            levels[1].SetActive(false);
+            levels[2].SetActive(false);
+
+        }
+        else if (pictures[2].transform.localPosition == new Vector3(-120, 52, 0))
+        {
+            levels[0].SetActive(true);
+
+            for(int i = 1; i < levels.Length; i++)
+            {
+                levels[i].SetActive(false);
+
+            }
+        }
+
 
     }
 
