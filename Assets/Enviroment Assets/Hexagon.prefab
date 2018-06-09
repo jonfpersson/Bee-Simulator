@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4791560876124512}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hexagon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 33662428318261628}
   - component: {fileID: 23698854272433964}
   - component: {fileID: 65420621641924394}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 33751123903331160}
   - component: {fileID: 23005550755389162}
   - component: {fileID: 65786526228484072}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 33400610584632544}
   - component: {fileID: 23263018708653342}
   - component: {fileID: 65401926670800956}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4556726792051060}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: bottomHexagon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 33029215540070536}
   - component: {fileID: 23735638856458330}
   - component: {fileID: 65975016414744554}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 33938172087604692}
   - component: {fileID: 23753877240122644}
   - component: {fileID: 65814051841961214}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 33877902142772320}
   - component: {fileID: 23353000570542392}
   - component: {fileID: 65039659992582318}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +157,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4093290375408556}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: overHexagon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

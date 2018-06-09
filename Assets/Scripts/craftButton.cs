@@ -28,14 +28,14 @@ public class craftButton : MonoBehaviour {
 
     public void onPressed()
     {
-        if(rotateIcons.iconIsMain == 0 && !(pickUpNectar.nectars -10 <= 0))
+        if(rotateIcons.iconIsMain == 0 && !(pickUpNectar.nectars -10 < 0))
         {
             Debug.Log("Beehive bought!");
             pickUpNectar.nectars -= 10;
             counterValues[0]++;
             itemCounters[0].text = counterValues[0].ToString();
         }
-        else if (rotateIcons.iconIsMain == 1 && !(pickUpNectar.nectars -5 <= 0))
+        else if (rotateIcons.iconIsMain == 1 && !(pickUpNectar.nectars -5 < 0))
         {
             Debug.Log("honey bought!");
             pickUpNectar.nectars -= 5;
@@ -45,7 +45,7 @@ public class craftButton : MonoBehaviour {
 
 
         }
-        else if (rotateIcons.iconIsMain == 2 && !(pickUpNectar.nectars-20 <= 0))
+        else if (rotateIcons.iconIsMain == 2 && !(pickUpNectar.nectars-20 < 0))
         {
             Debug.Log("Royal jelly bought!");
             pickUpNectar.nectars -= 20;
