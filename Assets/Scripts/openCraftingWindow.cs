@@ -9,7 +9,7 @@ public class openCraftingWindow : MonoBehaviour {
     // Use this for initialization
 	void Start () {
         isActivated = false;
-
+        rotateIcons.iconIsMain = 1;
     }
 	
 	// Update is called once per frame

@@ -21,7 +21,8 @@ public class pickUpNectar : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-
+        if (nectarCounter != null)
+            nectarCounter.text = informationText + nectars.ToString() + "/20";
         RaycastHit hit; 
         if (Physics.Raycast(transform.position, transform.forward, out hit, maxDistance) 
             && hit.collider.name== "bigNectar")  {

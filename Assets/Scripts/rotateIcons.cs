@@ -12,9 +12,14 @@ public class rotateIcons : MonoBehaviour {
     Vector3 picPos1;
     Vector3 picPos2;
 
+    public static int iconIsMain;
+
     public void start()
     {
-    
+        //Game starts with icon 1 selected
+        iconIsMain = 1;
+
+
     }
 
     public void rotatePictures(string direction)
@@ -48,18 +53,17 @@ public class rotateIcons : MonoBehaviour {
 
         if (pictures[0].transform.localPosition == new Vector3(-120, 52, 0))
         {
-            Debug.Log("test");
+            iconIsMain = 0;
             levels[2].SetActive(true);
 
             levels[0].SetActive(false);
             levels[1].SetActive(false);
             levels[3].SetActive(false);
 
-
         }
         else if (pictures[1].transform.localPosition == new Vector3(-120, 52, 0))
         {
-
+            iconIsMain = 1;
             levels[3].SetActive(true);
 
             levels[0].SetActive(false);
@@ -69,6 +73,7 @@ public class rotateIcons : MonoBehaviour {
         }
         else if (pictures[2].transform.localPosition == new Vector3(-120, 52, 0))
         {
+            iconIsMain = 2;
             levels[0].SetActive(true);
 
             for(int i = 1; i < levels.Length; i++)
@@ -76,6 +81,7 @@ public class rotateIcons : MonoBehaviour {
                 levels[i].SetActive(false);
 
             }
+
         }
 
 
