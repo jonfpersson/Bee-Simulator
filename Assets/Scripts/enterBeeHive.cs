@@ -11,13 +11,13 @@ public class enterBeeHive : MonoBehaviour {
     public AudioSource audioPlayer;
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         audioPlayer = GetComponent<AudioSource>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update () {
         if (hive != null || enterHiveMsg != null)
         {
             if (Vector3.Distance(hive.transform.position, transform.position) < 5)

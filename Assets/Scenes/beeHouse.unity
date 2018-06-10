@@ -282,6 +282,16 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114675023134432882, guid: dc3e92a64176f2a4faf5451f4bb3c457,
+        type: 2}
+      propertyPath: m_Text
+      value: 'Nectars: 5/100'
+      objectReference: {fileID: 0}
+    - target: {fileID: 224673507502015622, guid: dc3e92a64176f2a4faf5451f4bb3c457,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -85.6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc3e92a64176f2a4faf5451f4bb3c457, type: 2}
   m_IsPrefabParent: 0
@@ -999,12 +1009,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50556e4979b14e94ba2f0aaaf052290f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemCounters:
+  - {fileID: 196469403}
+  - {fileID: 1381055376}
+  - {fileID: 366805401}
+  - {fileID: 0}
+  - {fileID: 0}
   window: {fileID: 2094242572}
---- !u!82 &960072658 stripped
-AudioSource:
-  m_PrefabParentObject: {fileID: 82266603410148918, guid: f0cd7b262421f1641b2ac5e35211c8f2,
-    type: 2}
-  m_PrefabInternal: {fileID: 156670207}
 --- !u!114 &960072665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1018,7 +1029,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   door: {fileID: 1031586992}
   enterHiveMsg: {fileID: 0}
-  audioPlayer: {fileID: 960072658}
 --- !u!1001 &988117511
 Prefab:
   m_ObjectHideFlags: 0
