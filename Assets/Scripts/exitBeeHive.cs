@@ -22,7 +22,7 @@ public class exitBeeHive : MonoBehaviour
         {
             //Debug.Log("isClose");
             //enterHiveMsg.text = "Press E to exit beehive";
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetKey(KeyCode.G))
             {
                 StartCoroutine(ExitHive());
 

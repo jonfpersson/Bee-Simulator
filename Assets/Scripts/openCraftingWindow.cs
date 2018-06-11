@@ -14,7 +14,6 @@ public class openCraftingWindow : MonoBehaviour {
         itemCounters[1].text = PlayerPrefs.GetInt("honey").ToString();
         itemCounters[2].text = PlayerPrefs.GetInt("royalJelly").ToString();
 
-
         isActivated = false;
         rotateIcons.iconIsMain = 1;
     }

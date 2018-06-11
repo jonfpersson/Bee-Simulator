@@ -1,35 +1,33 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PickAndDrop : MonoBehaviour {
+public class PickAndDrop : MonoBehaviour
+{
     GameObject grabbedObject;
     float grabbedObjectSize;
-   
-	
+
+
     GameObject GetMouseHoverObject(float range)
     {
-       
-        Vector3 position = gameObject.transform.position ;
-        position.y = position.y + 2;
+
+        Vector3 position = gameObject.transform.position;
+        position.y = position.y;
         RaycastHit raycastHit;
-        Vector3 target =  position  + gameObject.transform.forward * range ;
+        Vector3 target = position + gameObject.transform.forward * range;
         Debug.Log("pos " + position);
 
-        if (Physics.Linecast(position, target, out raycastHit))
-            return raycastHit.collider.gameObject;
-
+        if (Physics.Linecast(position, target, out raycastHit)) { }
+        return raycastHit.collider.gameObject;
         return null;
     }
 
     void tryGrabObject(GameObject grapObject)
     {
-        
-        if (grapObject.layer != LayerMask.NameToLayer("hexagon"))
+        if (grapObject == null || !canGrab(grapObject))
             return;
 
-
         grabbedObject = grapObject;
-        grabbedObjectSize = grapObject.GetComponent<Renderer>().bounds.size.magnitude * 1.8f;
+        grabbedObjectSize = grapObject.GetComponent<Renderer>().bounds.size.magnitude * 1;
 
     }
 
@@ -50,19 +48,19 @@ public class PickAndDrop : MonoBehaviour {
         grabbedObject = null;
     }
 
-	// Update is called once per frame
-	void Update () {
-        if (Input.GetKey(KeyCode.G))
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(1))
         {
-
             if (grabbedObject == null)
-                tryGrabObject(GetMouseHoverObject(10f));
+                tryGrabObject(GetMouseHoverObject(10));
             else
                 dropObject();
         }
         if (grabbedObject != null)
         {
-            Vector3 newPosition = gameObject.transform.position + Camera.main.transform.forward * grabbedObjectSize + Camera.main.transform.up * (grabbedObjectSize * 0.8f);
+            Vector3 newPosition = gameObject.transform.position + Camera.main.transform.forward * grabbedObjectSize + (gameObject.transform.up - new Vector3(0,1,0)) * (grabbedObjectSize * 0.8f);
             grabbedObject.transform.position = newPosition;
         }
 
