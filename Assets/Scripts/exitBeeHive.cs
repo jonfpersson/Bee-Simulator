@@ -1,14 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class exitBeeHive : MonoBehaviour
 {
     public GameObject door;
-    public Text enterHiveMsg;
-
 
     // Use this for initialization
     void Start()
@@ -28,8 +25,6 @@ public class exitBeeHive : MonoBehaviour
 
             }
         }
-        else
-            enterHiveMsg.text = "";
     }
 
     IEnumerator ExitHive()
