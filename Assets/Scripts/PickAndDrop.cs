@@ -14,7 +14,6 @@ public class PickAndDrop : MonoBehaviour
         //position.y = position.y + 2;
         RaycastHit raycastHit;
         Vector3 target = position + Camera.main.transform.forward * range;
-        Debug.Log("pos " + position);
 
         if (Physics.Linecast(position, target, out raycastHit)) //{ }
             return raycastHit.collider.gameObject;
@@ -33,8 +32,11 @@ public class PickAndDrop : MonoBehaviour
 
     bool canGrab(GameObject candidate)
     {
-        return candidate.GetComponent<Rigidbody>() != null;
+        //return candidate.GetComponent<Rigidbody>() != null;
+        if (candidate.layer == 9)
+            return true;
 
+        return false;
     }
 
     void dropObject()
@@ -49,13 +51,14 @@ public class PickAndDrop : MonoBehaviour
 
         }
 
+
         grabbedObject = null;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.T))
+        if (Input.GetKeyUp(KeyCode.T))
         {
             if (grabbedObject == null)
                 tryGrabObject(GetMouseHoverObject(10));
@@ -67,8 +70,8 @@ public class PickAndDrop : MonoBehaviour
         {
             //Debug.Log("grabbed pos" + grabbedObject.transform.position);
 
-            Vector3 newPosition = gameObject.transform.position + Camera.main.transform.forward * grabbedObjectSize;
-            grabbedObject.transform.position = newPosition;
+            Vector3 newPosition = gameObject.transform.position + Camera.main.transform.forward * grabbedObjectSize * 10.2f;
+            grabbedObject.transform.parent.parent.position = newPosition;
             /*Debug.Log("grabbed pos After" + grabbedObject.transform.position);
 
             Debug.Log("gameObject.transform.position: " + gameObject.transform.position);
