@@ -6,6 +6,7 @@ public class PickAndDrop : MonoBehaviour
     GameObject grabbedObject;
     float grabbedObjectSize;
 
+    public GameObject hexagon;
 
     GameObject GetMouseHoverObject(float range)
     {
@@ -66,20 +67,32 @@ public class PickAndDrop : MonoBehaviour
                 dropObject();
         }
 
+        Vector3 rot = transform.parent.parent.rotation.eulerAngles;
+        rot = new Vector3(90, rot.y + 90, 0);
+        hexagon.transform.rotation = Quaternion.Euler(rot);
+
+
         if (grabbedObject != null)
         {
-            //Debug.Log("grabbed pos" + grabbedObject.transform.position);
-
-            Vector3 newPosition = gameObject.transform.position + Camera.main.transform.forward * grabbedObjectSize * 10.2f;
+            Vector3 newPosition = gameObject.transform.position + Camera.main.transform.forward*0.85f * grabbedObjectSize * 10.2f;
             grabbedObject.transform.parent.parent.position = newPosition;
-            /*Debug.Log("grabbed pos After" + grabbedObject.transform.position);
+            grabbedObject.transform.parent.parent.rotation = Quaternion.Euler(rot);
+        }
 
-            Debug.Log("gameObject.transform.position: " + gameObject.transform.position);
-            Debug.Log("Camera.main.transform.forward * grabbedObjectSize: " + Camera.main.transform.forward * grabbedObjectSize);
-            Debug.Log("Camera.main.transform.up * grabbedObjectSize: " + Camera.main.transform.up * grabbedObjectSize);
-            */
+      
+       if (Input.GetKeyUp(KeyCode.Alpha3) && openCraftingWindow.counterValues[1] > 0)
+        {
+            Instantiate(hexagon, transform.position + (transform.forward * 1.2f) + transform.up * 0.6f, hexagon.transform.rotation);
+            openCraftingWindow.counterValues[1]--;
+            PlayerPrefs.SetInt("honey", openCraftingWindow.counterValues[1]);
+
         }
 
 
+      /*  if (Input.GetKeyUp(KeyCode.L))
+        {
+            pickUpNectar.nectars = 100;
+        }*/
+        
     }
 }

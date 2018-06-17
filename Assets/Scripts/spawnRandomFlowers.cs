@@ -34,9 +34,9 @@ public class spawnRandomFlowers : MonoBehaviour
             // generate random z position
             int posz = Random.Range(terrainPosZ, terrainPosZ + terrainLength);
             // get the terrain height at the random position
-            float posy = Terrain.activeTerrain.SampleHeight(new Vector3(posx, 0, posz));
+            //float posy = Terrain.activeTerrain.SampleHeight(new Vector3(posx, 0, posz));
             // create new gameObject on random position
-            GameObject newObject = (GameObject)Instantiate(objectToPlace, new Vector3(posx, 1, posz), Quaternion.identity);
+            Instantiate(objectToPlace, new Vector3(posx, 1, posz), Quaternion.identity);
             currentObjects += 1;
         }
         

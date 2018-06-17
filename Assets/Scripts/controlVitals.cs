@@ -8,12 +8,11 @@ public class controlVitals : MonoBehaviour
     public SimpleHealthBar staminaBar;
     public SimpleHealthBar HealthBar;
 
-    float stamina, max, life;
+    float stamina, life;
 
     // Use this for initialization
     void Start()
     {
-        max = 100;
         stamina = 100;
         life = 100;
     }
