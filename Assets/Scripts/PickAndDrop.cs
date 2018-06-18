@@ -80,11 +80,11 @@ public class PickAndDrop : MonoBehaviour
         }
 
       
-       if (Input.GetKeyUp(KeyCode.Alpha3) && openCraftingWindow.counterValues[1] > 0)
+       if (Input.GetKeyUp(KeyCode.Alpha3) && openCraftingWindow.counterValues[2] > 0)
         {
             Instantiate(hexagon, transform.position + (transform.forward * 1.2f) + transform.up * 0.6f, hexagon.transform.rotation);
-            openCraftingWindow.counterValues[1]--;
-            PlayerPrefs.SetInt("honey", openCraftingWindow.counterValues[1]);
+            openCraftingWindow.counterValues[2]--;
+            PlayerPrefs.SetInt("honey", openCraftingWindow.counterValues[2]);
 
         }
 
