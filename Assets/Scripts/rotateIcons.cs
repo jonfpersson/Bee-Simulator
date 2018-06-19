@@ -17,7 +17,7 @@ public class rotateIcons : MonoBehaviour {
     public void start()
     {
         //Game starts with icon 1 selected
-        iconIsMain = 1;
+        iconIsMain = 0;
 
 
     }

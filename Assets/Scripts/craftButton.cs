@@ -7,10 +7,9 @@ public class craftButton : MonoBehaviour {
 
     public Text[] itemCounters;
    
-
     // Use this for initialization
     void Start () {
-
+        rotateIcons.iconIsMain = 0;
         for (int i = 0; i < openCraftingWindow.counterValues.Length; i++)
         {
             openCraftingWindow.counterValues[i] = 0;
@@ -26,7 +25,6 @@ public class craftButton : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		
 
 	}
 
@@ -42,8 +40,6 @@ public class craftButton : MonoBehaviour {
             //Handels saving data
             PlayerPrefs.SetInt("beeHives", openCraftingWindow.counterValues[0]);
             PlayerPrefs.SetInt("nectars", pickUpNectar.nectars);
-
-
         }
         else if (rotateIcons.iconIsMain == 1 && !(pickUpNectar.nectars -5 < 0))
         {
@@ -55,8 +51,6 @@ public class craftButton : MonoBehaviour {
             //Handels saving data
             PlayerPrefs.SetInt("honey", openCraftingWindow.counterValues[1]);
             PlayerPrefs.SetInt("nectars", pickUpNectar.nectars);
-
-
 
         }
         else if (rotateIcons.iconIsMain == 2 && !(pickUpNectar.nectars-20 < 0))
@@ -71,7 +65,6 @@ public class craftButton : MonoBehaviour {
             PlayerPrefs.SetInt("royalJelly", openCraftingWindow.counterValues[2]);
 
         }
-
 
     }
 

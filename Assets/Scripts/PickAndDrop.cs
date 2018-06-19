@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PickAndDrop : MonoBehaviour
 {
@@ -7,6 +8,14 @@ public class PickAndDrop : MonoBehaviour
     float grabbedObjectSize;
 
     public GameObject hexagon;
+    public GameObject honeyBall;
+    public Text honeyInfo;
+
+    // Use this for initialization
+    void Start()
+    {
+        honeyInfo.text = "";
+    }
 
     GameObject GetMouseHoverObject(float range)
     {
@@ -35,8 +44,13 @@ public class PickAndDrop : MonoBehaviour
     {
         //return candidate.GetComponent<Rigidbody>() != null;
         if (candidate.layer == 9)
+        {
+            honeyInfo.text = "Press \"2\" to store honey";
             return true;
 
+        }
+
+        honeyInfo.text = "";
         return false;
     }
 
@@ -80,19 +94,30 @@ public class PickAndDrop : MonoBehaviour
         }
 
       
-       if (Input.GetKeyUp(KeyCode.Alpha3) && openCraftingWindow.counterValues[2] > 0)
+       if (Input.GetKeyUp(KeyCode.Alpha3) && openCraftingWindow.counterValues[0] > 0)
         {
+            //Vector3 objPos = transform.position + (transform.forward * 1.2f) + transform.up * 0.6f;
+            Debug.Log("test");
             Instantiate(hexagon, transform.position + (transform.forward * 1.2f) + transform.up * 0.6f, hexagon.transform.rotation);
-            openCraftingWindow.counterValues[2]--;
-            PlayerPrefs.SetInt("honey", openCraftingWindow.counterValues[2]);
+            openCraftingWindow.counterValues[0]--;
+            PlayerPrefs.SetInt("beeHives", openCraftingWindow.counterValues[0]);
+
+           /* saveHoneyCombs.numberOfHoneyCombs++;
+            PlayerPrefs.SetInt("numberOfHoneyCombs", saveHoneyCombs.numberOfHoneyCombs);
+            saveHoneyCombs.HoneyCombPositions[saveHoneyCombs.numberOfHoneyCombs] = objPos;
+            */
+
+        }
+
+       if (Input.GetKeyUp(KeyCode.Alpha2)) {
 
         }
 
 
-      /*  if (Input.GetKeyUp(KeyCode.L))
-        {
-            pickUpNectar.nectars = 100;
-        }*/
-        
+          if (Input.GetKeyUp(KeyCode.L))
+          {
+              pickUpNectar.nectars = 100;
+          }
+
     }
 }
