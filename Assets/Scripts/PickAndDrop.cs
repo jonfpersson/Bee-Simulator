@@ -114,10 +114,10 @@ public class PickAndDrop : MonoBehaviour
         }
 
 
-          if (Input.GetKeyUp(KeyCode.L))
-          {
-              pickUpNectar.nectars = 100;
-          }
+        if (Input.GetKeyUp(KeyCode.L))
+        {
+            pickUpNectar.nectars = 100;
+        }
 
     }
 }
