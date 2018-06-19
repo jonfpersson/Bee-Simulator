@@ -19,7 +19,6 @@ public class rotateIcons : MonoBehaviour {
         //Game starts with icon 1 selected
         iconIsMain = 0;
 
-
     }
 
     public void rotatePictures(string direction)
@@ -36,9 +35,6 @@ public class rotateIcons : MonoBehaviour {
             pictures[2].transform.position = picPos1;
             pictures[1].transform.position = picPos0;
             pictures[0].transform.position = picPos2;
-
-
-
         }
         else if (direction == "right")
         {
@@ -46,10 +42,7 @@ public class rotateIcons : MonoBehaviour {
             pictures[2].transform.position = picPos0;
             pictures[1].transform.position = picPos2;
             pictures[0].transform.position = picPos1;
-
-
         }
-
 
         if (pictures[0].transform.localPosition == new Vector3(-120, 52, 0))
         {

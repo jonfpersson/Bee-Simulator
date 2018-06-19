@@ -44,7 +44,7 @@ MonoBehaviour:
     m_Settings:
       intensity: 0.3
       radius: 0.3
-      sampleCount: 16
+      sampleCount: 10
       downsampling: 0
       forceForwardCompatibility: 0
       ambientOnly: 0
@@ -121,8 +121,8 @@ MonoBehaviour:
         neutralWhiteClip: 10
       basic:
         postExposure: 1
-        temperature: 0
-        tint: 0
+        temperature: 16
+        tint: -10
         hueShift: 0
         saturation: 1
         contrast: 1

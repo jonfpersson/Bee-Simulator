@@ -11,6 +11,8 @@ public class PickAndDrop : MonoBehaviour
     public GameObject honeyBall;
     public Text honeyInfo;
 
+    public Material[] materials;
+
     // Use this for initialization
     void Start()
     {
@@ -44,13 +46,7 @@ public class PickAndDrop : MonoBehaviour
     {
         //return candidate.GetComponent<Rigidbody>() != null;
         if (candidate.layer == 9)
-        {
-            honeyInfo.text = "Press \"2\" to store honey";
             return true;
-
-        }
-
-        honeyInfo.text = "";
         return false;
     }
 
@@ -109,15 +105,53 @@ public class PickAndDrop : MonoBehaviour
 
         }
 
-       if (Input.GetKeyUp(KeyCode.Alpha2)) {
-
-        }
-
-
         if (Input.GetKeyUp(KeyCode.L))
         {
             pickUpNectar.nectars = 100;
         }
+
+
+        Vector3 position = gameObject.transform.position;
+        RaycastHit raycastHit;
+        Vector3 target = position + Camera.main.transform.forward * 20;
+
+        if(openCraftingWindow.counterValues[1] > 0)
+        {
+            if (Physics.Linecast(position, target, out raycastHit)
+            && raycastHit.collider.name == "hexagonCollider")
+            {
+                honeyInfo.text = "Press \"2\" to store honey";
+                if (Input.GetKeyUp(KeyCode.Alpha2))
+                {
+                    
+
+                    if (raycastHit.collider.GetComponent<Renderer>().sharedMaterial == materials[0])
+                    {
+                        //HasHoney
+                        openCraftingWindow.counterValues[1]++;
+                        PlayerPrefs.SetInt("honey", openCraftingWindow.counterValues[1]);
+                        raycastHit.collider.GetComponent<Renderer>().sharedMaterial = materials[1];
+
+                    }
+                    else if (raycastHit.collider.GetComponent<Renderer>().sharedMaterial == materials[1])
+                    {
+                        //IsEmpty
+                        openCraftingWindow.counterValues[1]--;
+                        PlayerPrefs.SetInt("honey", openCraftingWindow.counterValues[1]);
+
+                        raycastHit.collider.GetComponent<Renderer>().sharedMaterial = materials[0];
+                    }
+                    //Lay honey
+                    Debug.Log(raycastHit.collider.GetComponent<Renderer>().sharedMaterial);
+                }
+
+            }
+            else
+                honeyInfo.text = "";
+
+        }
+            else
+                honeyInfo.text = "";
 
     }
 }
