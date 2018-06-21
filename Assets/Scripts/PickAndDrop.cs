@@ -77,6 +77,7 @@ public class PickAndDrop : MonoBehaviour
                 dropObject();
         }
 
+        //Calculates rotation
         Vector3 rot = transform.parent.parent.rotation.eulerAngles;
         rot = new Vector3(90, rot.y + 90, 0);
         hexagon.transform.rotation = Quaternion.Euler(rot);
@@ -84,24 +85,38 @@ public class PickAndDrop : MonoBehaviour
 
         if (grabbedObject != null)
         {
+           /* for(int i = 0; i < saveHoneyCombs.totalHex; i++)
+            {
+                if (saveHoneyCombs.hexagonPosition[i] == grabbedObject.transform.parent.parent.position)
+                {
+
+                    saveHoneyCombs.hexagonPosition[i] = gameObject.transform.position + Camera.main.transform.forward * 0.85f * grabbedObjectSize * 10.2f;
+                    Debug.Log("Before pos: "+gameObject.transform.position + Camera.main.transform.forward * 0.85f * grabbedObjectSize * 10.2f);
+
+                }
+                //grabbedObject.transform.parent.parent.position
+            }*/
+
+            //Moves the object to a position relative to the players camera
             Vector3 newPosition = gameObject.transform.position + Camera.main.transform.forward*0.85f * grabbedObjectSize * 10.2f;
             grabbedObject.transform.parent.parent.position = newPosition;
             grabbedObject.transform.parent.parent.rotation = Quaternion.Euler(rot);
+
+            Debug.Log("after pos: "+gameObject.transform.position + Camera.main.transform.forward * 0.85f * grabbedObjectSize * 10.2f);
         }
 
-      
-       if (Input.GetKeyUp(KeyCode.Alpha3) && openCraftingWindow.counterValues[0] > 0)
+
+        if (Input.GetKeyUp(KeyCode.Alpha3) && openCraftingWindow.counterValues[0] > 0)
         {
-            //Vector3 objPos = transform.position + (transform.forward * 1.2f) + transform.up * 0.6f;
             Debug.Log("test");
             Instantiate(hexagon, transform.position + (transform.forward * 1.2f) + transform.up * 0.6f, hexagon.transform.rotation);
             openCraftingWindow.counterValues[0]--;
             PlayerPrefs.SetInt("beeHives", openCraftingWindow.counterValues[0]);
 
-           /* saveHoneyCombs.numberOfHoneyCombs++;
-            PlayerPrefs.SetInt("numberOfHoneyCombs", saveHoneyCombs.numberOfHoneyCombs);
-            saveHoneyCombs.HoneyCombPositions[saveHoneyCombs.numberOfHoneyCombs] = objPos;
-            */
+            //Save position of comb for generation when player starts playing
+            //saveHoneyCombs.totalHex++;
+            //saveHoneyCombs.hexagonPosition[saveHoneyCombs.totalHex] = transform.position + (transform.forward * 1.2f) + transform.up * 0.6f;
+
 
         }
 
