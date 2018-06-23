@@ -17,7 +17,7 @@ public class saveHoneyCombs : MonoBehaviour
     // Is called before Start
     void Awake()
     {
-        
+        load();
     }
 
     // Update is called once per frame
@@ -33,7 +33,7 @@ public class saveHoneyCombs : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.O))
         {
-            load();
+           // load();
         }
 
     }
