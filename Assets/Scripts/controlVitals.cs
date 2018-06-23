@@ -2,26 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class controlVitals : MonoBehaviour {
+public class controlVitals : MonoBehaviour
+{
 
     public SimpleHealthBar staminaBar;
     public SimpleHealthBar HealthBar;
 
-    float stamina, max, life;
-    
+    public static float stamina, life;
+
     // Use this for initialization
-    void Start () {
-		max = 100;
-		stamina = 100;
+    void Start()
+    {
+        stamina = 100;
         life = 100;
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         if (Input.GetKey(KeyCode.LeftShift))
-        {
             controlPlayerVitals();
-        }
         else
             regeneratePlayerVitals();
     }
@@ -38,7 +38,7 @@ public class controlVitals : MonoBehaviour {
         }
         else
         {
-            beeFly.fastMoveFactor = 1;
+            beeFly.fastMoveFactor = 1.4f;
             life -= Time.deltaTime * 10;
             HealthBar.UpdateBar(life, 100);
 
