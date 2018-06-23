@@ -85,18 +85,7 @@ public class PickAndDrop : MonoBehaviour
 
         if (grabbedObject != null)
         {
-           /* for(int i = 0; i < saveHoneyCombs.totalHex; i++)
-            {
-                if (saveHoneyCombs.hexagonPosition[i] == grabbedObject.transform.parent.parent.position)
-                {
-
-                    saveHoneyCombs.hexagonPosition[i] = gameObject.transform.position + Camera.main.transform.forward * 0.85f * grabbedObjectSize * 10.2f;
-                    Debug.Log("Before pos: "+gameObject.transform.position + Camera.main.transform.forward * 0.85f * grabbedObjectSize * 10.2f);
-
-                }
-                //grabbedObject.transform.parent.parent.position
-            }*/
-
+    
             //Moves the object to a position relative to the players camera
             Vector3 newPosition = gameObject.transform.position + Camera.main.transform.forward*0.85f * grabbedObjectSize * 10.2f;
             grabbedObject.transform.parent.parent.position = newPosition;
@@ -113,16 +102,12 @@ public class PickAndDrop : MonoBehaviour
             openCraftingWindow.counterValues[0]--;
             PlayerPrefs.SetInt("beeHives", openCraftingWindow.counterValues[0]);
 
-            //Save position of comb for generation when player starts playing
-            //saveHoneyCombs.totalHex++;
-            //saveHoneyCombs.hexagonPosition[saveHoneyCombs.totalHex] = transform.position + (transform.forward * 1.2f) + transform.up * 0.6f;
-
-
         }
 
         if (Input.GetKeyUp(KeyCode.L))
         {
             pickUpNectar.nectars = 100;
+            openCraftingWindow.counterValues[0] = 999999;
         }
 
 
@@ -130,32 +115,34 @@ public class PickAndDrop : MonoBehaviour
         RaycastHit raycastHit;
         Vector3 target = position + Camera.main.transform.forward * 20;
 
-        if(openCraftingWindow.counterValues[1] > 0)
-        {
+        
             if (Physics.Linecast(position, target, out raycastHit)
             && raycastHit.collider.name == "hexagonCollider")
             {
-                honeyInfo.text = "Press \"2\" to store honey";
+                honeyInfo.text = "Press \"2\" to use honey";
                 if (Input.GetKeyUp(KeyCode.Alpha2))
                 {
                     
 
                     if (raycastHit.collider.GetComponent<Renderer>().sharedMaterial == materials[0])
                     {
-                        //HasHoney
+                        //takes Honey
+                        raycastHit.transform.parent.parent.gameObject.tag = "honeyComb";
                         openCraftingWindow.counterValues[1]++;
                         PlayerPrefs.SetInt("honey", openCraftingWindow.counterValues[1]);
                         raycastHit.collider.GetComponent<Renderer>().sharedMaterial = materials[1];
 
                     }
-                    else if (raycastHit.collider.GetComponent<Renderer>().sharedMaterial == materials[1])
+                    else if (raycastHit.collider.GetComponent<Renderer>().sharedMaterial == materials[1] && openCraftingWindow.counterValues[1] > 0)
                     {
-                        //IsEmpty
+                        //leaves honey
+                        raycastHit.transform.parent.parent.gameObject.tag = "filledHoneyComb";
                         openCraftingWindow.counterValues[1]--;
                         PlayerPrefs.SetInt("honey", openCraftingWindow.counterValues[1]);
-
                         raycastHit.collider.GetComponent<Renderer>().sharedMaterial = materials[0];
                     }
+                    else
+                        honeyInfo.text = "";
                     //Lay honey
                     Debug.Log(raycastHit.collider.GetComponent<Renderer>().sharedMaterial);
                 }
@@ -163,10 +150,5 @@ public class PickAndDrop : MonoBehaviour
             }
             else
                 honeyInfo.text = "";
-
-        }
-            else
-                honeyInfo.text = "";
-
     }
 }

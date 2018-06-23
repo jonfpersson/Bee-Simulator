@@ -8,25 +8,24 @@ using System.Runtime.Serialization.Formatters.Binary;
 public class saveHoneyCombs : MonoBehaviour
 {
     GameObject[] getCountOfCombs;
-
+    GameObject[] getCountOfFilledCombs;
     GameObject[] GameObjectsToRestore;
+
     public GameObject hexagon;
-    // Use this for initialization
-    void Start()
+    public GameObject filledHoneyComb;
+    
+    // Is called before Start
+    void Awake()
     {
         
-        //Instantiate(hexagon, transform.position + (transform.forward * 1.2f) + transform.up * 0.6f, hexagon.transform.rotation);
     }
 
     // Update is called once per frame
     void Update()
     {
         getCountOfCombs = GameObject.FindGameObjectsWithTag("honeyComb");
-        Debug.Log("transform.rotation: " + getCountOfCombs[0].transform.rotation);
+        getCountOfFilledCombs = GameObject.FindGameObjectsWithTag("filledHoneyComb");
 
-
-        //Debug.Log("n1: " + getCountOfCombs[0].transform.localPosition);
-        //Debug.Log("getCountOfCombs.Length: " + getCountOfCombs.Length);
         if (Input.GetKeyUp(KeyCode.U))
         {
             save();
@@ -42,11 +41,10 @@ public class saveHoneyCombs : MonoBehaviour
     public void save()
     {
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/worldObjects.bee");
+        FileStream file = File.Create(Application.persistentDataPath + "/honeycomb.bee");
         hexagonObject hb = new hexagonObject(getCountOfCombs.Length);
 
-        //hb.totalNumbers = getCountOfCombs.Length;
-
+        Debug.Log(getCountOfCombs.Length);
         for (int i = 0; i < getCountOfCombs.Length; i++)
         {
             hb.pos[i, 0] = getCountOfCombs[i].transform.localPosition.x;
@@ -54,65 +52,116 @@ public class saveHoneyCombs : MonoBehaviour
             hb.pos[i, 2] = getCountOfCombs[i].transform.localPosition.z;
         }
 
+        for (int i = 0; i < getCountOfCombs.Length; i++)
+        {
+            hb.hexaRotations[i, 0] = getCountOfCombs[i].transform.rotation.x;
+            hb.hexaRotations[i, 1] = getCountOfCombs[i].transform.rotation.y;
+            hb.hexaRotations[i, 2] = getCountOfCombs[i].transform.rotation.z;
+            hb.hexaRotations[i, 3] = getCountOfCombs[i].transform.rotation.w;
+        }
+
+
         bf.Serialize(file, hb);
         file.Close();
         Debug.Log("Saved!");
+
+        //Handels the saving for honeycombs filled with honey
+
+        BinaryFormatter bformatter = new BinaryFormatter();
+        FileStream saveFile = File.Create(Application.persistentDataPath + "/data.bee");
+        filledHoneycomb fh = new filledHoneycomb(getCountOfFilledCombs.Length);
+
+        for (int i = 0; i < getCountOfFilledCombs.Length; i++)
+        {
+            fh.pos[i, 0] = getCountOfFilledCombs[i].transform.localPosition.x;
+            fh.pos[i, 1] = getCountOfFilledCombs[i].transform.localPosition.y;
+            fh.pos[i, 2] = getCountOfFilledCombs[i].transform.localPosition.z;
+        }
+
+        for (int i = 0; i < getCountOfFilledCombs.Length; i++)
+        {
+            fh.hexaRotations[i, 0] = getCountOfFilledCombs[i].transform.rotation.x;
+            fh.hexaRotations[i, 1] = getCountOfFilledCombs[i].transform.rotation.y;
+            fh.hexaRotations[i, 2] = getCountOfFilledCombs[i].transform.rotation.z;
+            fh.hexaRotations[i, 3] = getCountOfFilledCombs[i].transform.rotation.w;
+        }
+
+
+        bformatter.Serialize(saveFile, fh);
+        saveFile.Close();
+        Debug.Log("Saved!");
+
     }
 
     public void load()
     {
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Open(Application.persistentDataPath + "/worldObjects.bee", FileMode.Open);
-        hexagonObject hb = (hexagonObject) bf.Deserialize(file);
-        file.Close();
-
-        Debug.Log("hb.pos.Length/3: " + hb.pos.GetLength(0));
-        for (int i = 0; i < hb.pos.GetLength(0); i++)
+        if(File.Exists(Application.persistentDataPath + "/honeycomb.bee"))
         {
-            Instantiate(hexagon, new Vector3(hb.pos[i,0], hb.pos[i, 1], hb.pos[i, 2]), hexagon.transform.rotation);
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/honeycomb.bee", FileMode.Open);
+            hexagonObject hb = (hexagonObject)bf.Deserialize(file);
+            file.Close();
+
+            Quaternion rotationOfCombs = new Quaternion();
+            for (int i = 0; i < hb.pos.GetLength(0); i++)
+            {
+                rotationOfCombs.Set(hb.hexaRotations[i, 0], hb.hexaRotations[i, 1], hb.hexaRotations[i, 2], hb.hexaRotations[i, 3]);
+                Instantiate(hexagon, new Vector3(hb.pos[i, 0], hb.pos[i, 1], hb.pos[i, 2]), rotationOfCombs);
+                Debug.Log("pos: " + i.ToString() + ": " + new Vector3(hb.pos[i, 0], hb.pos[i, 1], hb.pos[i, 2]));
+            }
+
+        }// Debug.Log("No data found! Try saving first.");
+
+
+        //Handels the loading for honeycombs filled with honey
+        if (File.Exists(Application.persistentDataPath + "/data.bee"))
+        {
+            BinaryFormatter bformatter = new BinaryFormatter();
+            FileStream saveFile = File.Open(Application.persistentDataPath + "/data.bee", FileMode.Open);
+            filledHoneycomb fh = (filledHoneycomb) bformatter.Deserialize(saveFile);
+            saveFile.Close();
+
+            Quaternion rotationOfCombs = new Quaternion();
+            for (int i = 0; i < fh.pos.GetLength(0); i++)
+            {
+                rotationOfCombs.Set(fh.hexaRotations[i, 0], fh.hexaRotations[i, 1], fh.hexaRotations[i, 2], fh.hexaRotations[i, 3]);
+                Instantiate(filledHoneyComb, new Vector3(fh.pos[i, 0], fh.pos[i, 1], fh.pos[i, 2]), rotationOfCombs);
+                Debug.Log("Filled pos: " + i.ToString() + ": " + new Vector3(fh.pos[i, 0], fh.pos[i, 1], fh.pos[i, 2]));
+            }
 
         }
-        /* GameObjectsToRestore = new GameObject[hb.hexaPos.Length];
+       // Debug.Log("No data found! Try saving first.");
 
-         for (int i = 0; i < GameObjectsToRestore.Length; i++){
-             GameObjectsToRestore[i].transform.position = hb.hexaPos[i];
-         }
-
-
-         for (int i = 0; i < GameObjectsToRestore.Length; i++)
-         {
-             Instantiate(hexagon, GameObjectsToRestore[i].transform.position, hexagon.transform.rotation);
-
-         }*/
-    }
-
-    private void OnGUI()
-    {
-        if (GUI.Button(new Rect(10, 10, 50, 50), "Save"))
-            save();
     }
 
 }
 [Serializable]
 class hexagonObject {
-
-    //public int totalNumbers;
-    public Vector3[] hexaPos;
-    
     //Own invented vector3 that is (probably) Serializable
     public float[,] pos;
 
     //Own invented Quaternion that is (probably) Serializable
-    public Quaternion[] hexaRotations;
+    public float[,] hexaRotations;
 
     public hexagonObject(int totalObj)
     {
-        //hexaPos = new Vector3[totalObj];
-        hexaRotations = new Quaternion[totalObj];
+        hexaRotations = new float[totalObj, 4];
         pos = new float[totalObj, 3];
-        
-
     }
-
 }
 
+[Serializable]
+class filledHoneycomb
+{
+    //Own invented vector3 that is (probably) Serializable
+    public float[,] pos;
+
+    //Own invented Quaternion that is (probably) Serializable
+    public float[,] hexaRotations;
+
+    public filledHoneycomb(int totalObj)
+    {
+        hexaRotations = new float[totalObj, 4];
+        pos = new float[totalObj, 3];
+    }
+}
