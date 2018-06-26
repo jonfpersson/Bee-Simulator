@@ -25,8 +25,7 @@ public class saveHoneyCombs : MonoBehaviour
     {
         getCountOfCombs = GameObject.FindGameObjectsWithTag("honeyComb");
         getCountOfFilledCombs = GameObject.FindGameObjectsWithTag("filledHoneyComb");
-
-        if (Input.GetKeyUp(KeyCode.U))
+        /*if (Input.GetKeyUp(KeyCode.U))
         {
             save();
         }
@@ -34,8 +33,7 @@ public class saveHoneyCombs : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.O))
         {
            // load();
-        }
-
+        }*/
     }
 
     public void save()
@@ -91,6 +89,7 @@ public class saveHoneyCombs : MonoBehaviour
         saveFile.Close();
         Debug.Log("Saved!");
 
+        Application.Quit();
     }
 
     public void load()

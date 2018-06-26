@@ -7,9 +7,9 @@ public class openCraftingWindow : MonoBehaviour {
     public Text[] itemCounters;
     public static int[] counterValues;
     public GameObject window;
-    bool isActivated;
+     bool isActivated;
     // Use this for initialization
-	void Start () {
+    void Start () {
         counterValues = new int[3];
 
         counterValues[0] = PlayerPrefs.GetInt("beeHives");
@@ -31,9 +31,11 @@ public class openCraftingWindow : MonoBehaviour {
         {
             isActivated = !isActivated;
             Screen.lockCursor = !isActivated;
-            beeFly.craftingWindowIsActivated = isActivated;
+            beeFly.WindowIsActivated = isActivated;
             window.SetActive(isActivated);
 
         }
+
+       
     }
 }

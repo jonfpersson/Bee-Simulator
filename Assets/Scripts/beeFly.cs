@@ -23,17 +23,17 @@ FEATURES
     private float rotationX = 0.0f;
     private float rotationY = 0.0f;
 
-    public static bool craftingWindowIsActivated;
+    public static bool WindowIsActivated;
 
     void Start()
     {
-        craftingWindowIsActivated = false;
+        WindowIsActivated = false;
         Screen.lockCursor = true;
     }
 
     void Update()
     {
-        if (!craftingWindowIsActivated)
+        if (!WindowIsActivated)
         {
             rotationX += Input.GetAxis("Mouse X") * cameraSensitivity * Time.deltaTime;
             rotationY += Input.GetAxis("Mouse Y") * cameraSensitivity * Time.deltaTime;
