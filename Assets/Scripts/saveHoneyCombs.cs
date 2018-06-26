@@ -17,7 +17,7 @@ public class saveHoneyCombs : MonoBehaviour
     // Is called before Start
     void Awake()
     {
-        load();
+        //load();
     }
 
     // Update is called once per frame

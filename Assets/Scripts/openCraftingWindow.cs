@@ -12,11 +12,9 @@ public class openCraftingWindow : MonoBehaviour {
 	void Start () {
         counterValues = new int[3];
 
-       
         counterValues[0] = PlayerPrefs.GetInt("beeHives");
         counterValues[1] = PlayerPrefs.GetInt("honey");
         counterValues[2] = PlayerPrefs.GetInt("royalJelly");
-
 
         isActivated = false;
         rotateIcons.iconIsMain = 1;
