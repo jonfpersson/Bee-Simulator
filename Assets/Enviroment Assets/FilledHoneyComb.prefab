@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 64037158998237266}
   m_Layer: 9
   m_Name: hexagonCollider
-  m_TagString: filledHoneyComb
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 127
@@ -260,7 +260,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1259464539804736}
   m_LocalRotation: {x: -0.49532458, y: 0.5046321, z: -0.5046321, w: -0.49532458}
-  m_LocalPosition: {x: -40.68363, y: 2.1747005, z: 32.03931}
+  m_LocalPosition: {x: -38.479286, y: 2.1747005, z: 29.56916}
   m_LocalScale: {x: 0.10000012, y: 0.10000012, z: 0.10000012}
   m_Children:
   - {fileID: 4852452644307704}

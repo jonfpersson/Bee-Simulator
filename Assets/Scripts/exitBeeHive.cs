@@ -15,15 +15,11 @@ public class exitBeeHive : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(door.transform.position, transform.position) < 5)
+        if (Vector3.Distance(door.transform.position, transform.position) < .3f)
         {
             //Debug.Log("isClose");
             //enterHiveMsg.text = "Press E to exit beehive";
-            if (Input.GetKey(KeyCode.G))
-            {
-                StartCoroutine(ExitHive());
-
-            }
+            StartCoroutine(ExitHive());
         }
     }
 

@@ -24,6 +24,11 @@ public class controlVitals : MonoBehaviour
             controlPlayerVitals();
         else
             regeneratePlayerVitals();
+
+        if(life == 0)
+        {
+
+        }
     }
 
     public void controlPlayerVitals()

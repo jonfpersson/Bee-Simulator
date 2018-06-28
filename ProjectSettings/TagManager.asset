@@ -6,6 +6,7 @@ TagManager:
   tags:
   - honeyComb
   - filledHoneyComb
+  - honeybee
   layers:
   - Default
   - TransparentFX

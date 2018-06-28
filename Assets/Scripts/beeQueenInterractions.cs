@@ -19,7 +19,7 @@ public class beeQueenInterractions : MonoBehaviour {
 	void Update () {
         if(Vector3.Distance(player.transform.position, transform.position) < 3)
         {
-            queenInterractionInformation.text = "Press R to feed queen";
+            queenInterractionInformation.text = "Press R to feed 5 honeys queen";
             if (Input.GetKeyUp(KeyCode.R) && openCraftingWindow.counterValues[1] > 4)
             {
                 openCraftingWindow.counterValues[1] -= 5;

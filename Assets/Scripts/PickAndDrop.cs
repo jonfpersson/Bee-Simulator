@@ -103,11 +103,11 @@ public class PickAndDrop : MonoBehaviour
 
         }
 
-        /*if (Input.GetKeyUp(KeyCode.L))
+        if (Input.GetKeyUp(KeyCode.L))
         {
             pickUpNectar.nectars = 100;
             openCraftingWindow.counterValues[0] = 999999;
-        }*/
+        }
 
 
         Vector3 position = gameObject.transform.position;
