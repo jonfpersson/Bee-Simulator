@@ -9,8 +9,23 @@ public class beeQueenInterractions : MonoBehaviour {
     public GameObject honeybeeAI;
     public Text queenInterractionInformation;
     AudioSource queenScream;
-	// Use this for initialization
-	void Start () {
+    public SimpleHealthBar healthBar;
+
+    public static float queenHealth;
+
+    // Use this for initialization
+    void Start () {
+        InvokeRepeating("loseHealth", 0, 1.0f);
+
+        if (PlayerPrefs.GetFloat("queenHealth") == 0)
+        {
+            queenHealth = 100;
+            PlayerPrefs.SetFloat("queenHealth", queenHealth);
+
+        }
+        else
+            queenHealth = PlayerPrefs.GetFloat("queenHealth");
+
         queenInterractionInformation.text = "";
         queenScream = gameObject.GetComponentInChildren<AudioSource>();
     }
@@ -19,7 +34,7 @@ public class beeQueenInterractions : MonoBehaviour {
 	void Update () {
         if(Vector3.Distance(player.transform.position, transform.position) < 3)
         {
-            queenInterractionInformation.text = "Press R to feed 5 honeys queen";
+            queenInterractionInformation.text = "Press R to feed 5 honeys to queen \n Or press 1 to feed 1 royaljelly to increase her health";
             if (Input.GetKeyUp(KeyCode.R) && openCraftingWindow.counterValues[1] > 4)
             {
                 openCraftingWindow.counterValues[1] -= 5;
@@ -27,8 +42,33 @@ public class beeQueenInterractions : MonoBehaviour {
                 Instantiate(honeybeeAI, transform.position, transform.rotation);
                 queenScream.Play();
             }
+
+            if (Input.GetKeyUp(KeyCode.Alpha1) && openCraftingWindow.counterValues[2] > 0)
+            {
+                openCraftingWindow.counterValues[2] -= 1;
+                PlayerPrefs.SetInt("royalJelly", openCraftingWindow.counterValues[2]);
+                queenHealth += 50;
+
+                if (queenHealth > 100)
+                {
+                    queenHealth = 100;
+                }
+                PlayerPrefs.SetFloat("queenHealth", queenHealth);
+
+            }
         } else
             queenInterractionInformation.text = "";
 
+        
     }
+
+    public void loseHealth()
+    {
+        queenHealth = PlayerPrefs.GetFloat("queenHealth");
+        queenHealth -= 0.166f;
+        PlayerPrefs.SetFloat("queenHealth", queenHealth);
+        healthBar.UpdateBar(queenHealth, 100);
+
+    }
+
 }

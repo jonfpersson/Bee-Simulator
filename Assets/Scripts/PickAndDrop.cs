@@ -106,7 +106,7 @@ public class PickAndDrop : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.L))
         {
             pickUpNectar.nectars = 100;
-            openCraftingWindow.counterValues[0] = 999999;
+            openCraftingWindow.counterValues[0] = 1000;
         }
 
 
@@ -149,5 +149,9 @@ public class PickAndDrop : MonoBehaviour
             }
             else
                 honeyInfo.text = "";
+
+        if(Input.GetKeyUp(KeyCode.Alpha1)){
+
+        }
     }
 }

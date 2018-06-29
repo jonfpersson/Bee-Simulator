@@ -156,7 +156,7 @@ public class saveHoneyCombs : MonoBehaviour
             {
                 rotationOfCombs.Set(hb.hexaRotations[i, 0], hb.hexaRotations[i, 1], hb.hexaRotations[i, 2], hb.hexaRotations[i, 3]);
                 Instantiate(hexagon, new Vector3(hb.pos[i, 0], hb.pos[i, 1], hb.pos[i, 2]), rotationOfCombs);
-                Debug.Log("pos: " + i.ToString() + ": " + new Vector3(hb.pos[i, 0], hb.pos[i, 1], hb.pos[i, 2]));
+              //  Debug.Log("pos: " + i.ToString() + ": " + new Vector3(hb.pos[i, 0], hb.pos[i, 1], hb.pos[i, 2]));
             }
 
         }// Debug.Log("No data found! Try saving first.");
@@ -178,7 +178,7 @@ public class saveHoneyCombs : MonoBehaviour
             {
                 rotationOfCombs.Set(fh.hexaRotations[i, 0], fh.hexaRotations[i, 1], fh.hexaRotations[i, 2], fh.hexaRotations[i, 3]);
                 Instantiate(filledHoneyComb, new Vector3(fh.pos[i, 0], fh.pos[i, 1], fh.pos[i, 2]), rotationOfCombs);
-                Debug.Log("Filled pos: " + i.ToString() + ": " + new Vector3(fh.pos[i, 0], fh.pos[i, 1], fh.pos[i, 2]));
+                //Debug.Log("Filled pos: " + i.ToString() + ": " + new Vector3(fh.pos[i, 0], fh.pos[i, 1], fh.pos[i, 2]));
             }
 
         }
@@ -199,7 +199,7 @@ public class saveHoneyCombs : MonoBehaviour
             {
                 rotationOfBees.Set(hb.BeeRotations[i, 0], hb.BeeRotations[i, 1], hb.BeeRotations[i, 2], hb.BeeRotations[i, 3]);
                 Instantiate(honeybeeAI, new Vector3(hb.pos[i, 0], hb.pos[i, 1], hb.pos[i, 2]), rotationOfBees);
-                Debug.Log("Filled pos: " + i.ToString() + ": " + new Vector3(hb.pos[i, 0], hb.pos[i, 1], hb.pos[i, 2]));
+                //Debug.Log("Filled pos: " + i.ToString() + ": " + new Vector3(hb.pos[i, 0], hb.pos[i, 1], hb.pos[i, 2]));
             }
 
         }

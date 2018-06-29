@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class controlVitals : MonoBehaviour
 {
@@ -8,13 +9,22 @@ public class controlVitals : MonoBehaviour
     public SimpleHealthBar staminaBar;
     public SimpleHealthBar HealthBar;
 
-    public static float stamina, life;
+    public GameObject diedHUDMenu;
+    public Image img;
+    
+    public GameObject button;
 
+    public AudioListener audioListener;
+    public static float stamina, life;
+    Color c;
     // Use this for initialization
+
     void Start()
     {
         stamina = 100;
         life = 100;
+        button.SetActive(false);
+        c = img.color;
     }
 
     // Update is called once per frame
@@ -25,9 +35,13 @@ public class controlVitals : MonoBehaviour
         else
             regeneratePlayerVitals();
 
-        if(life == 0)
-        {
+        if (img != null) {
+            c.a = 1 - (life / 100);
+            img.color = c;
+        }
 
+        if (life < 0){
+            die();
         }
     }
 
@@ -69,5 +83,14 @@ public class controlVitals : MonoBehaviour
 
         }
 
+    }
+
+    public void die()
+    {
+        Screen.lockCursor = false;
+
+        diedHUDMenu.SetActive(true);
+        button.SetActive(true);
+        audioListener.enabled = false;
     }
 }
