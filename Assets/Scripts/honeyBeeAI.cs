@@ -7,16 +7,18 @@ public class honeyBeeAI : MonoBehaviour
 {
     public GameObject checkpointParent;
     float step;
+    public static float speed = 2.5f;
     int randomChild;
     void Start()
     {
         checkpointParent = GameObject.Find("checkpoints");
-        step = 2 * Time.deltaTime;
         randomChild = Random.Range(0, 763);
     }
 
     void Update()
     {
+        step = speed * Time.deltaTime;
+
         if (transform.position != checkpointParent.transform.GetChild(randomChild).position)
         {
             transform.position = Vector3.MoveTowards(transform.position, checkpointParent.transform.GetChild(randomChild).position, step);

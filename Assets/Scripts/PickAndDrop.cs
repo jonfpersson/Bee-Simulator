@@ -150,8 +150,6 @@ public class PickAndDrop : MonoBehaviour
             else
                 honeyInfo.text = "";
 
-        if(Input.GetKeyUp(KeyCode.Alpha1)){
-
-        }
+        
     }
 }

@@ -8,6 +8,7 @@ public class beeQueenInterractions : MonoBehaviour {
     public GameObject player;
     public GameObject honeybeeAI;
     public Text queenInterractionInformation;
+    public Text cantFly;
     AudioSource queenScream;
     public SimpleHealthBar healthBar;
 
@@ -59,7 +60,32 @@ public class beeQueenInterractions : MonoBehaviour {
         } else
             queenInterractionInformation.text = "";
 
-        
+        if (queenHealth <=0)
+        {
+            //cantFly.text = "Your queen is dead, you have become depressed. \n Revive her to start your hive up again";
+            honeyBeeAI.speed = 0.4f;
+            beeFly.normalMoveSpeed = 1;
+
+        }
+        else
+        {
+            honeyBeeAI.speed = 2.5f;
+            beeFly.normalMoveSpeed = 10;
+
+        }
+
+    /*    if (Input.GetKeyUp(KeyCode.V))
+        {
+            queenHealth = 0;
+            PlayerPrefs.SetFloat("queenHealth", queenHealth);
+
+        }
+        if (Input.GetKeyUp(KeyCode.N))
+        {
+            queenHealth = 100;
+            PlayerPrefs.SetFloat("queenHealth", queenHealth);
+
+        }*/
     }
 
     public void loseHealth()

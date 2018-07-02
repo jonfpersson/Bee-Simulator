@@ -16,7 +16,7 @@ FEATURES
 
     public float cameraSensitivity = 90;
     public float climbSpeed = 4;
-    public float normalMoveSpeed = 10;
+    public static float normalMoveSpeed = 10;
     public float slowMoveFactor = 0.25f;
     public static float fastMoveFactor = 3;
 
